@@ -9,8 +9,6 @@
 #define MOD 1000000007
 typedef long long ll;
 
-const int lines = 1e4;
-
 ll mod_expo(ll base, ll exp, ll mod) {
   ll result = 1;
   while (exp > 0) {
@@ -48,8 +46,8 @@ int main() {
   precomp(fact, invFact, max_n);
 
   ll N, A, B, D;
-  for (int i = 1; i <= lines; i++) {
-    std::cin >> N >> A >> B >> D;
+  while (std::cin >> N >> A >> B >> D) {
+
     ll choose_schools = nCr(N, A, fact, invFact);
     ll choose_students_per_school = nCr(B, D, fact, invFact);
 
