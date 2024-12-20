@@ -1,14 +1,15 @@
 #include <bits/stdc++.h>
+typedef long long ll;
 using namespace std;
 
 const int MOD = 1e9 + 7;
 const int LIMIT = 1e6;
 
-vector<long long> fact(LIMIT + 1);
-vector<long long> inv_fact(LIMIT + 1);
+vector<ll> fact(LIMIT + 1);
+vector<ll> inv_fact(LIMIT + 1);
 
-long long power(long long x, long long y, long long mod) {
-  long long result = 1;
+ll power(ll x, ll y, ll mod) {
+  ll result = 1;
   while (y > 0) {
     if (y % 2 == 1) {
       result = (result * x) % mod;
@@ -30,7 +31,7 @@ void precompute() {
   }
 }
 
-long long binom(int a, int b) {
+ll binom(int a, int b) {
   if (b > a || b < 0)
     return 0;
   return fact[a] * inv_fact[b] % MOD * inv_fact[a - b] % MOD;
