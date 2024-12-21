@@ -21,8 +21,21 @@ int main() {
       close++;
   }
 
-  // If the prefix is already invalid or its length is longer than n
-  if (close > open || k > n || open > n / 2) {
+  // If the prefix is already invalid
+  if (close > open || k > n) {
+    cout << 0 << endl;
+    return 0;
+  }
+
+  // Calculate remaining brackets needed to complete the sequence
+  int remaining = n - k;
+  int balance = open - close;
+  int totalRemainingOpen = (remaining + balance) / 2;
+  int totalRemainingClose = (remaining - balance) / 2;
+
+  // If it's impossible to balance the sequence
+  if ((remaining + balance) % 2 != 0 || totalRemainingOpen < 0 ||
+      totalRemainingClose < 0) {
     cout << 0 << endl;
     return 0;
   }
