@@ -1,9 +1,9 @@
 #include <iostream>
+#include <vector>
 using namespace std;
-typedef unsigned long long ull;
-const int MOD = 1000000007;
 
-int countSetBits(ull n) {
+// Function to count number of set bits in binary representation of a number
+int countSetBits(long long n) {
   int count = 0;
   while (n) {
     count += n & 1;
@@ -12,22 +12,24 @@ int countSetBits(ull n) {
   return count;
 }
 
+// Function to count even binomial coefficients
+int countEvenBinomialCoefficients(long long n) {
+  int total_count = n + 1;
+  int odd_count = 1 << countSetBits(n);
+  return total_count - odd_count;
+}
+
 int main() {
   int T;
   cin >> T;
+
   while (T--) {
-    ull n;
+    long long n;
     cin >> n;
 
-    ull total = n + 1;
-
-    int setBitsCount = countSetBits(n);
-
-    ull oddCount = 1ULL << setBitsCount;
-
-    ull evenCount = total - oddCount;
-
-    cout << evenCount % MOD << '\n';
+    // Calculate the number of even binomial coefficients in the nth row
+    cout << countEvenBinomialCoefficients(n) << endl;
   }
+
   return 0;
 }

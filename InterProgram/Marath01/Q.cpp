@@ -1,61 +1,70 @@
 #include <iostream>
 #include <vector>
+#define MOD 1000000007
+
 using namespace std;
 
-const int MOD = 1000000007;
-
-// Function to compute factorial and modular inverses
-vector<long long> fact(1001, 1), invFact(1001, 1);
-
-long long power(long long x, long long y, long long p) {
-  long long res = 1;
-  x = x % p;
-  while (y > 0) {
-    if (y & 1)
-      res = (res * x) % p;
-    y = y >> 1;
-    x = (x * x) % p;
+// Function to calculate factorial modulo MOD
+vector<long long> compute_factorials(int n) {
+  vector<long long> fact(n + 1, 1);
+  for (int i = 2; i <= n; i++) {
+    fact[i] = (fact[i - 1] * i) % MOD;
   }
-  return res;
+  return fact;
 }
 
-void precomputeFactorials() {
-  for (int i = 2; i <= 1000; ++i) {
-    fact[i] = fact[i - 1] * i % MOD;
+// Function to calculate modular exponentiation
+long long mod_exp(long long base, long long exp, long long mod) {
+  long long result = 1;
+  while (exp > 0) {
+    if (exp % 2 == 1) {
+      result = (result * base) % mod;
+    }
+    base = (base * base) % mod;
+    exp /= 2;
   }
-  invFact[1000] = power(fact[1000], MOD - 2, MOD);
-  for (int i = 999; i >= 1; --i) {
-    invFact[i] = invFact[i + 1] * (i + 1) % MOD;
-  }
+  return result;
 }
 
-long long binomialCoefficient(int n, int k) {
+// Function to calculate binomial coefficient modulo MOD
+long long binomial_mod(int n, int k, const vector<long long> &fact) {
   if (k > n)
     return 0;
-  return fact[n] * invFact[k] % MOD * invFact[n - k] % MOD;
+  long long numerator = fact[n];
+  long long denominator = (fact[k] * fact[n - k]) % MOD;
+  return (numerator * mod_exp(denominator, MOD - 2, MOD)) %
+         MOD; // Modular inverse
+}
+
+// Function to calculate derangement D(k)
+long long derangement(int k) {
+  if (k == 0)
+    return 1;
+  if (k == 1)
+    return 0;
+  vector<long long> der(k + 1, 0);
+  der[0] = 1;
+  der[1] = 0;
+  for (int i = 2; i <= k; i++) {
+    der[i] = (i - 1) * (der[i - 1] + der[i - 2]) % MOD;
+  }
+  return der[k];
 }
 
 int main() {
-  precomputeFactorials();
-
   int n, k;
   cin >> n >> k;
 
-  long long result = 0;
-  for (int i = n - k; i <= n; ++i) {
-    long long term = binomialCoefficient(n, i);
-    long long derangements = 1;
-    for (int j = 0; j < n - i; ++j) {
-      derangements = (derangements * (n - i - j)) % MOD;
-    }
-    if ((n - i) % 2 == 1)
-      term = (term - derangements + MOD) % MOD;
-    else
-      term = (term + derangements) % MOD;
-    result = (result + term) % MOD;
-  }
+  // Precompute factorials modulo MOD
+  vector<long long> fact = compute_factorials(n);
+
+  // Compute binomial coefficient and derangement
+  long long comb = binomial_mod(n, n - k, fact);
+  long long der = derangement(k);
+
+  // Result is the product of the two
+  long long result = (comb * der) % MOD;
 
   cout << result << endl;
-
   return 0;
 }
