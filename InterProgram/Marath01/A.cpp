@@ -1,12 +1,14 @@
-#include <bits/stdc++.h>
-typedef long long ll;
-using namespace std;
-
+#include "iostream"
+#include "vector"
+using ll = long long;
+#define fast_io                                                                \
+  std::ios::sync_with_stdio(false);                                            \
+  std::cin.tie(nullptr);
 const int MOD = 1e9 + 7;
 const int LIMIT = 1e6;
 
-vector<ll> fact(LIMIT + 1);
-vector<ll> inv_fact(LIMIT + 1);
+std::vector<ll> fact(LIMIT + 1);
+std::vector<ll> inv_fact(LIMIT + 1);
 
 ll power(ll x, ll y, ll mod) {
   ll result = 1;
@@ -38,18 +40,16 @@ ll binom(int a, int b) {
 }
 
 int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-
+  fast_io;
   precompute();
 
   int n;
-  cin >> n;
+  std::cin >> n;
 
   while (n--) {
     int a, b;
-    cin >> a >> b;
-    cout << binom(a, b) << '\n';
+    std::cin >> a >> b;
+    std::cout << binom(a, b) << '\n';
   }
 
   return 0;
