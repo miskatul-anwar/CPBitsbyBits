@@ -8,13 +8,13 @@
 using str = std::string;
 using vs = std::vector<std::string>;
 
-const vs prob = {"1/6", "1/3", "1/2", "2/3", "5/6", "1"};
+const vs prob = {"0/1", "1/6", "1/3", "1/2", "2/3", "5/6", "1/1"};
 
 int main() {
   fast_io;
-  int y, w;
+  int y, w, req;
   std::cin >> y >> w;
-  int req = 6 - (y > w ? y : w);
+  req = 7 - (y > w ? y : w);
   std::cout << prob[req] << '\n';
   return 0;
 }
