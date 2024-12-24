@@ -32,19 +32,19 @@ int main() {
 
   if (W + T + R != N) {
     std::cout << 0 << '\n';
-    return 0;
+  } else {
+
+    ll factorial_N = factorialMod(N, MOD);
+    ll factorial_W = factorialMod(W, MOD);
+    ll factorial_T = factorialMod(T, MOD);
+    ll factorial_R = factorialMod(R, MOD);
+
+    ll result = factorial_N;
+    result = (result * modInverse(factorial_W, MOD)) % MOD;
+    result = (result * modInverse(factorial_T, MOD)) % MOD;
+    result = (result * modInverse(factorial_R, MOD)) % MOD;
+
+    std::cout << result << '\n';
   }
-
-  ll factorial_N = factorialMod(N, MOD);
-  ll factorial_W = factorialMod(W, MOD);
-  ll factorial_T = factorialMod(T, MOD);
-  ll factorial_R = factorialMod(R, MOD);
-
-  ll result = factorial_N;
-  result = (result * modInverse(factorial_W, MOD)) % MOD;
-  result = (result * modInverse(factorial_T, MOD)) % MOD;
-  result = (result * modInverse(factorial_R, MOD)) % MOD;
-
-  std::cout << result << '\n';
   return 0;
 }
