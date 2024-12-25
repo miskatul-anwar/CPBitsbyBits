@@ -7,11 +7,11 @@
   cin.tie(0);                                                                  \
   cout.tie(0);
 using namespace std;
-typedef long long ll;
-typedef pair<int, int> pii;
+using ll = long long;
+using pii = pair<int, int>;
 
-typedef pair<double, double> pdd;
-typedef complex<double> Point;
+using pdd = pair<double, double>;
+using Point = complex<double>;
 
 #define X real()
 #define Y imag()

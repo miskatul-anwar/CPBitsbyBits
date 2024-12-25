@@ -7,8 +7,8 @@
   cout.tie(0);
 using namespace std;
 
-typedef long long ll;
-typedef vector<int> vi;
+using ll = long long;
+using vi = vector<int>;
 
 vi special_number(int n) {
   vi return_val;
