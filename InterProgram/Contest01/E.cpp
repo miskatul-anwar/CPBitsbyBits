@@ -1,8 +1,15 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
-int s[10001];
+#include <vector>
+std::vector<int> s(10001);
+#define fast_io                                                                \
+  std::ios::sync_with_stdio(0);                                                \
+  std::cin.tie(0);                                                             \
+  std::cout.tie(0);
+
 int main() {
+  fast_io;
   int t;
   std::cin >> t;
   while (t--) {

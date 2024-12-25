@@ -1,25 +1,16 @@
 #include <bits/stdc++.h>
 #include <ext/hash_set>
 #include <ext/numeric>
-
+#define fast_io                                                                \
+  ios::sync_with_stdio(0);                                                     \
+  cin.tie(0);                                                                  \
+  cout.tie(0);
 using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<ll> vll;
-typedef vector<vi> vvi;
-typedef pair<int, int> pii;
-typedef vector<pii> vii;
-typedef vector<bool> vb;
-typedef vector<string> vs;
-const ll MOD = 1e9 + 7;
-const long double EPS = 1e-5;
-#define all(x) x.begin(), x.end()
-#define SZ(x) (int)x.size()
-#define fr first
-#define sc second
+using ll = long long;
+using vi = vector<int>;
 
 int main() {
-  ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+  fast_io;
   int t;
   cin >> t;
   while (t--) {
