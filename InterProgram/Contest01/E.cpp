@@ -1,24 +1,25 @@
-#include <algorithm>
 #include <iostream>
-#include <string>
 #include <vector>
-std::vector<int> s(10001);
 #define fast_io                                                                \
   std::ios::sync_with_stdio(0);                                                \
   std::cin.tie(0);                                                             \
   std::cout.tie(0);
+
+using vi = std::vector<int>;
+
+vi s(10001);
 
 int main() {
   fast_io;
   int t;
   std::cin >> t;
   while (t--) {
-    int n, m, a, b;
-    std::string x;
-    std::cin >> n >> m >> a;
+    int n, m, k, b;
+    char x;
+    std::cin >> n >> m >> k;
     for (int i = 1; i <= n; i++) {
       std::cin >> x;
-      if (x[0] == 'S') {
+      if (x == 'S') {
         s[i] = 0;
       } else {
         s[i] = 1;
@@ -27,16 +28,16 @@ int main() {
     int ans = 0;
     for (int i = 0; i < m; i++) {
       std::cin >> x;
-      if (x[0] == 'W') {
+      if (x == 'W') {
         std::cin >> b;
         if (s[b] == 0) {
-          if (b <= a) {
+          if (b <= k) {
             ans++;
           }
         }
-        a = std::max(a, b);
-      } else if (x[0] == 'A') {
-        a = n;
+        k = (k > b ? k : b);
+      } else if (x == 'A') {
+        k = n;
       }
     }
     std::cout << ans << '\n';
